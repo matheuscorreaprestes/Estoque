@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoirt" content="width=device, initial-scale=.0">
-    <link rel="stylesheet" href="estilos/login.css">
+    <link rel="stylesheet" href="/estilos/login.css">
     <title>Login</title>
+  
 </head>
 <body>
     <div id="all">
@@ -13,13 +14,14 @@
             Faça login no sistema
           </div>
           <div id="login-inputs">
-            <input type="text" placeholder="Nome de usuário" name="usuario">
+            <input class="campos" type="text" placeholder="Nome de usuário" name="usuario">
             <br />
-            <input type="password" placeholder="Senha" name="senha">
+            <input class="campos" type="password" placeholder="Senha" name="senha">
           </div>
           <div id="enviar">
             <input type="button" onclick="Login()" class="botao" value="Login">
           </div>
+          <a href="/pages/admin.html">Entrar como admin</a>
         </div>
       </div>
     </form>
