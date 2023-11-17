@@ -2,44 +2,10 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet"href="/estilos/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu de Gerenciamento de Estoque</title>
-    <style>
-        /* Estilos CSS para o menu (pode ser movido para um arquivo separado) */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>
@@ -60,23 +26,23 @@
     <main>
         <!-- Seções correspondentes aos links do menu -->
         <section id="adicionar">
-            <h2>Adicionar Estoque</h2>
-            <p>Formulário para adicionar novos itens ao estoque.</p>
+            
+            <button onclick="window.location.href='link_para_adicionar_estoque.html'">Ir para Adicionar Estoque</button>
         </section>
 
         <section id="gerenciar">
-            <h2>Gerenciar Estoque</h2>
-            <p>Opções para editar, remover ou atualizar itens no estoque.</p>
+            
+            <button onclick="window.location.href='link_para_gerenciar_estoque.html'">Ir para Gerenciar Estoque</button>
         </section>
 
         <section id="consultar">
-            <h2>Consultar Estoque</h2>
-            <p>Visualização do estoque atual.</p>
+            
+            <button onclick="window.location.href='link_para_consultar_estoque.html'">Ir para Consultar Estoque</button>
         </section>
 
         <section id="preços">
-            <h2>Precificar Estoque</h2>
-            <p>Atribuir preços aos itens do estoque.</p>
+            
+            <button onclick="window.location.href='link_para_precificar_estoque.html'">Ir para Precificar Estoque</button>
         </section>
     </main>
 </body>
