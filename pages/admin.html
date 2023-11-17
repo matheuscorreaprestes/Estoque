@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/estilos/login.css">
     <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>EU SOU O ADMIN</h1>
+    <div id="all">
+        <div id="login-box">
+          <div id="login-header">
+            Entre como adiministrador
+          </div>
+          <div id="login-inputs">
+            <input class="campos" type="text" placeholder="Nome de usuário" name="usuario">
+            <br />
+            <input class="campos" type="password" placeholder="Senha" name="senha">
+          </div>
+          <div id="enviar">
+            <input type="button" onclick="Admin()" class="botao" value="Login">
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script src="/scripts/admin.js"></script>
 </body>
 </html>
