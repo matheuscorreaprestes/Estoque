@@ -4,8 +4,8 @@ function Login() {
     usuario=usuario.toLowerCase();
     var senha= document.getElementsByName('senha')[0].value;
     senha=senha.toLowerCase();
-    if (usuario=="admin" && senha=="admin") {
-      window.location="/pages/cadastro.html";
+    if (usuario=="matheus" && senha=="matheus") {
+      window.location="../pages/cadastro.html";
       done=1;
     }
     if (done==0) { alert("Dados incorretos, tente novamente"); }
