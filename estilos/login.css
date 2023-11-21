@@ -2,6 +2,7 @@ body{
     margin: auto;
     width: 600px;
     margin-top: 15px;
+    
 }
 
 #all{
@@ -10,7 +11,7 @@ body{
     height: 300px;
     margin-top: 25%;
     margin-left: 25%;
-    margin-right: 25%;
+    margin-right: 25%;  
 }
 
 #login-header{
@@ -22,12 +23,14 @@ body{
     padding: 10px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    
 }
 
 #login-inputs{
     height: 60px;
     padding: 25px;
     text-align: center; 
+    
 }
 
 .campos{
@@ -49,9 +52,11 @@ body{
 }
 
 a{
-    position: absolute;
     right: 10px;
     bottom: 10px;  
     background-color: #eaeaea;
     color: #333;
+    
 }
+
+

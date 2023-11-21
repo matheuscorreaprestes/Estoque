@@ -8,18 +8,50 @@
     <link rel="stylesheet" href="../estilos/funcoes.css">
 </head>
 <body>
+<div id="all">
     <header>
         <h1>Gerenciamento do estoque</h1>
     </header>
 
-
-    <input class="entrada" type="text" placeholder="Nome do produto" name="produto" >
-    <input class="entrada"  type="number" placeholder="Quantidade" name="quantidade">
-    <input class="entrada" type="text" placeholder="Categoria" name="categoria">
+    <div id="containder">
+        <div class="row">
+            <div>
+                <label for="text">Nome do produto :</label>
+            </div>
+            <div>
+                 <input class="entrada" type="text" name="produto" >
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <label for="text">Categoria :</label>
+            </div>
+            <div>
+                 <input class="entrada" type="text" name="produto" >
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <label for="number">Quantidade :</label>
+            </div>
+            <div>
+                 <input class="entrada" type="number" name="produto" >
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <label for="number">Preço :</label>
+            </div>
+            <div>
+                 <input class="entrada" type="number" placeholder="Preço individual" name="produto" >
+            </div>
+        </div>
     
+    </div>
     </br>
     <button >Adicionar</button>
 
+</div>
 </body>
 </html>
 
