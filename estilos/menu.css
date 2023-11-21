@@ -6,7 +6,7 @@ body {
 }
 
 main{
-    background-color: #ebebeb;
+    background-color: rgb(0, 0, 171);
     height: 300px;
     border-radius: 15px;
     border-top-right-radius: 0px;
