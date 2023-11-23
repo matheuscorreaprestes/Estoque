@@ -1,5 +1,5 @@
 body{
-    margin-left: 30%;
+    margin-left: 35%;
     width: 500px;
     height: 700px;
 }
@@ -36,6 +36,13 @@ button{
     color: white;
 }
 
+#alll{
+    background-color: #333;
+    width: 500px;
+    height: 650px;
+    border-radius: 15px;
+}
+
 #all{
     background-color: #333;
     width: 500px;
@@ -46,4 +53,17 @@ button{
 .row{
     margin-top: 20px;
 }
+
+#valor{
+    margin-top: 45px;
+    height: 45px;
+    width: 150px;
+    background-color: black;
+    color: white;
+    border-radius: 7px;
+    margin-left: 35%;
+}
+
+
+
 
