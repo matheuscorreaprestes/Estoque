@@ -12,7 +12,7 @@
     <header>
         <h1>Gerenciamento do estoque</h1>
     </header>
-
+    <form action="../src/index.js" method="POST" >
     <div id="containder">
         <div class="row">
             <div>
@@ -27,7 +27,7 @@
                 <label for="text">Categoria :</label>
             </div>
             <div>
-                 <input class="entrada" type="text" name="produto" >
+                 <input class="entrada" type="text" name="categoria" >
             </div>
         </div>
         <div class="row">
@@ -35,7 +35,7 @@
                 <label for="number">Quantidade :</label>
             </div>
             <div>
-                 <input class="entrada" type="number" name="produto" >
+                 <input class="entrada" type="number" name="quantidade" >
             </div>
         </div>
         <div class="row">
@@ -43,14 +43,14 @@
                 <label for="number">Preço :</label>
             </div>
             <div>
-                 <input class="entrada" type="number" placeholder="Preço individual" name="produto" >
+                 <input class="entrada" type="number" placeholder="Preço individual" name="preco" >
             </div>
         </div>
     
     </div>
     </br>
-    <button >Adicionar</button>
-        
+    <button type="submit" >Adicionar</button>
+    </form>   
 </div>  
 </body>
 </html>

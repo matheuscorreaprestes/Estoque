@@ -1,14 +1,14 @@
 const Sequelize  = require("sequelize");
 
-const sequelize = new Sequelize("estoque","root", "C@t4t4u",{
+const sequelize = new Sequelize("teste","root", "C@t4t4u",{
     host: "localhost",
     dialect: "mysql"
 })
 
 sequelize.authenticate().then(function(){
-    console.log("Conexão Pocando!!!")
+    console.log("Servidor rodou")
 }).catch(function(){
-    console.log("Não Pocou :(");
+    console.log("não rodou");
 })
 
 module.exports = Sequelize;
