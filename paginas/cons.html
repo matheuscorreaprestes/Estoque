@@ -3,43 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../estilos/funcoes.css">
+    <title>Consultar Estoques</title>
+    <link rel="stylesheet" href="/paginas/css/funcoes.css">
     <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
+    <style>
+        #consultaBox {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            height: 100px; /* Defina a altura inicial conforme necessário */
+            transition: height 0.3s;
+            overflow: hidden;
+        }
+
+        #resultados table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #resultados th, #resultados td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: white;
+        }
+
+        #resultados th {
+            background-color: #333;
+        }
+    </style>
 </head>
 <body>
-<div id="all">
-    <header>
-    <H1>Consultar estoque</H1>
-    </header>
-    <div id="containder">
-        <div class="row">
-            <div>
-                <label for="text">Nome do produto :</label>
-            </div>
-            <div>
-                 <input class="entrada" type="text" name="produto" >
-            </div>
+    <div id="all" style="height: auto;">
+        <header>
+            <h1>Consultar Estoques</h1>
+        </header>
+        <div id="consultaBox">
+            <button onclick="consultarProdutos()">Consultar</button>
         </div>
-        <div class="row">
-            <div>
-                <label for="text">Categoria :</label>
-            </div>
-            <div>
-                 <input class="entrada" type="text" name="produto" >
-            </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="checkbox">Todos os produtos</label>
-            </div>
-            <div>
-                 <input class="entrada" type="checkbox" name="produto" >
-            </div>
-        </div>
+        <div id="resultados"></div>
     </div>
-    <br>
-    <button>Consultar</button>
-</div>
+    <script>
+        async function consultarProdutos() {
+            try {
+                const response = await fetch('/consultar-produtos');
+                const produtos = await response.json();
+
+                // Limpa os resultados anteriores
+                document.getElementById('resultados').innerHTML = '';
+
+                // Cria a tabela
+                const tabela = document.createElement('table');
+
+                // Cria a linha de cabeçalho
+                const cabecalho = document.createElement('tr');
+                cabecalho.innerHTML = '<th>Nome do Produto</th><th>Categoria</th><th>Quantidade</th><th>Preço</th>';
+                tabela.appendChild(cabecalho);
+
+                // Adiciona os produtos à tabela
+                produtos.forEach(produto => {
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${produto.nome}</td>
+                        <td>${produto.categoria}</td>
+                        <td>${produto.quantidade}</td>
+                        <td>${produto.preco}</td>
+                    `;
+                    tabela.appendChild(linha);
+                });
+
+                // Adiciona a tabela ao elemento de resultados
+                document.getElementById('resultados').appendChild(tabela);
+
+                // Expande a caixa após a consulta
+                document.getElementById('consultaBox').style.height = 'auto';
+            } catch (error) {
+                console.error('Erro ao consultar produtos:', error);
+                // Lógica de tratamento de erro
+            }
+        }
+    </script>
 </body>
 </html>

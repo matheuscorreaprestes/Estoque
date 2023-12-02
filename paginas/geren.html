@@ -3,39 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../estilos/funcoes.css">
+    <title>Gerenciar Preços</title>
+    <link rel="stylesheet" href="/paginas/css/funcoes.css">
     <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
 </head>
 <body>
-<div id="all">
-    <header>
+    <div id="all">
+        <header>
             <h1>Gerenciar preços</h1>
-    </header>
-    
+        </header>
+
         <div id="containder">
-            <div class="row">
-                <div>
+            <form id="gerenciarPrecosForm" action="/atualizar-preco" method="POST">
+                <div class="row">
+                    <label for="number">Novo Preço :</label>
+                    <input class="entrada" type="number" placeholder="Novo preço" name="novoPreco">
+                </div>
+
+                <div class="row">
                     <label for="text">Nome do produto :</label>
+                    <input class="entrada" type="text" name="produto">
                 </div>
-                <div>
-                     <input class="entrada" type="text" name="produto" >
-                </div>
-            </div>
-            <button style="margin-left: 0px;">Consultar</button>
-            <div class="row">
-                <div>
-                    <label for="number">Preço :</label>
-                </div>
-                <div>
-                     <input class="entrada" type="number" placeholder="Preço individual"   name="produto" >
-                </div>
-            </div>
-        
+
+                <button type="button" onclick="atualizarPreco()">Atualizar Preço</button>
+
+            </form>
         </div>
-    </br>
-    <button id="valor">Definir novo preço</button>
-            
-</div>  
+
+
+        <script>
+            async function atualizarPreco() {
+                try {
+                    const novoPreco = document.querySelector('input[name="novoPreco"]').value;
+                    const nomeProduto = document.querySelector('input[name="produto"]').value;
+        
+                    const response = await fetch('/atualizar-preco', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ nomeProduto, novoPreco }),
+                    });
+        
+                    const resultado = await response.json();
+                    alert(resultado.message);
+                } catch (error) {
+                    console.error('Erro ao atualizar preço:', error);
+                    // Lógica de tratamento de erro
+                }
+            }
+        </script>
+        
+    </div>
 </body>
 </html>

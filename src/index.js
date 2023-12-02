@@ -1,24 +1,49 @@
 const express = require("express");
-const router = express.Router();
+//const router = express.Router();
 const path = require("path");
 const bodyParser = require("body-parser");
-const session = require("./session");
+const session = require("../session");
 
 const app = express();
-const db = require('./db');
+const db = require('./dao/db');
+app.use(session);
 
 app.use(express.json());
-app.use(session);
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json()); //novo 
-app.use(db);
-//  app.use(router);
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname,"../paginas","login.html"));
+//app.use(db);
+
+//app.use(router);
+
+app.get('/adicionar', (req, res) => {
+  res.sendFile(path.join(__dirname, '../paginas', 'add.html'));
+});
+
+// Rota para a página de realizar venda
+app.get('/vender', (req, res) => {
+  res.sendFile(path.join(__dirname, '../paginas', 'venda.html'));
+});
+
+// Rota para a página de consultar estoque
+app.get('/consultar', (req, res) => {
+  res.sendFile(path.join(__dirname, '../paginas', 'cons.html'));
+});
+
+// Rota para a página de definir preços
+app.get('/precos', (req, res) => {
+  res.sendFile(path.join(__dirname, '../paginas', 'geren.html'));
 });
 
 
+const UsuarioController = require('./controller/usuario_controller');
+const ProdutoController = require('./controller/produto_controller');
+
+
+app.set('views', path.join(__dirname, '../', 'paginas'));
+app.set('view engine', 'ejs');
+
+app.use(UsuarioController);
+app.use(ProdutoController);
 
 
 

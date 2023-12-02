@@ -3,60 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento</title>
-    <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../estilos/funcoes.css">
+    <title>Adicionar Item</title>
+    <link rel="stylesheet" href="/paginas/css/funcoes.css">
 </head>
 <body>
-<div id="all">
-    <header>
-        <h1>Gerenciamento do estoque</h1>
-    </header>
-    <form action="../src/index.js" method="POST" >
-    <div id="containder">
-        <div class="row">
-            <div>
-                <label for="text">Nome do produto :</label>
+    <div id="all">
+        <h1>Adicionar Item</h1>
+        <form action="/adicionar-produto" id="addItemForm" method="POST">
+          <div class="containder">
+            <div class="row">
+              <div>
+                  <label for="produto">Nome do Produto:</label>
+              </div>
+              <div>
+                <input type="text" id="produto" name="produto" required>
+              </div>
             </div>
-            <div>
-                 <input class="entrada" type="text" name="produto" >
+        
+            <div class="row">
+              <div>
+                  <label for="categoria">Categoria:</label>
+              </div>
+              <div>
+                <input type="text" id="categoria" name="categoria" required>
+              </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="text">Categoria :</label>
+        
+            <div class="row">
+              <div>
+                  <label for="quantidade">Quantidade:</label>
+              </div>
+              <div>
+                <input type="number" id="quantidade" name="quantidade" required>
+              </div>
             </div>
-            <div>
-                 <input class="entrada" type="text" name="categoria" >
+        
+            <div class="row">
+              <div>
+                  <label for="preco" placeholder="Preço unitario">Preço:</label>
+              </div>
+              <div>
+                <input type="number" id="preco" name="preco" step="0.01" required>
+              </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="number">Quantidade :</label>
-            </div>
-            <div>
-                 <input class="entrada" type="number" name="quantidade" >
-            </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="number">Preço :</label>
-            </div>
-            <div>
-                 <input class="entrada" type="number" placeholder="Preço individual" name="preco" >
-            </div>
-        </div>
-    
+            
+            
+        
+            <button type="submit">Adicionar Item</button>
+          </div>
+        </form>
     </div>
-    </br>
-    <button type="submit" >Adicionar</button>
-    </form>   
-</div>  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                const formData = {
+                    produto: form.querySelector('#nome').value,
+                    categoria: form.querySelector('#categoria').value,
+                    quantidade: form.querySelector('#quantidade').value,
+                    preco: form.querySelector('#preco').value,
+                };
+
+                try {
+                    const response = await fetch('/adicionar-produto', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+
+                        alert(result.message);
+
+                        // Se quiser fazer algo mais na página, faça aqui
+                        console.log('Novo produto:', result.produto);
+                    } else {
+                        alert('Erro ao adicionar produto');
+                    }
+                } catch (error) {
+                    console.error('Erro na solicitação:', error);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-

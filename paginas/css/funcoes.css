@@ -37,6 +37,7 @@ button{
 }
 
 #alll{
+    color:white;
     background-color: #333;
     width: 500px;
     height: 650px;
@@ -44,6 +45,7 @@ button{
 }
 
 #all{
+    color:white;
     background-color: #333;
     width: 500px;
     height: 550px;

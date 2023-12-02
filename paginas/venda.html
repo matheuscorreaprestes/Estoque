@@ -3,48 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../estilos/funcoes.css">
+    <title>Venda</title>
+    <link rel="stylesheet" href="/paginas/css/funcoes.css">
     <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
 </head>
 <body>
     <div id="alll">
         <header>
-            <h1>Gerenciamento do estoque</h1>
+            <h1>Vender produtos</h1>
         </header>
     
-        <div id="containder">
-            <div class="row">
-                <div>
-                    <label for="text">Id do produto :</label>
+        <div id="container">
+            <form id="vendaForm">
+                <div class="row">
+                    <div>
+                        <label for="produtoSelect">Selecione o produto:</label>
+                    </div>
+                    <div>
+                        <!-- Adicione um campo de seleção para os produtos -->
+                        <select class="entrada" id="produtoSelect" name="produto" onchange="calcularTotal()">
+                            <!-- Opções dos produtos devem ser dinamicamente preenchidas -->
+                        </select>
+                    </div>
                 </div>
-                <div>
-                     <input class="entrada" type="text" name="produto" >
+                <div class="row">
+                    <div>
+                        <label for="quantidade">Quantidade:</label>
+                    </div>
+                    <div>
+                        <input class="entrada" type="number" id="quantidade" name="quantidade">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-            </div>
-            <div class="row">
-                <div>
-                    <label for="number">Quantidade :</label>
+                <div class="row">
+                    <div>
+                        <label for="total">Total:</label>
+                    </div>
+                    <div>
+                        <input class="entrada" type="text" id="total" name="total" readonly>
+                    </div>
                 </div>
-                <div>
-                     <input class="entrada" type="number" name="produto" >
-                </div>
-            </div>
-            <div class="row">
-                <div>
-                    <label for="number">Comissão :</label>
-                </div>
-                <div>
-                     <input class="entrada" type="checkbox" name="produto" >
-                </div>
-            </div>
+                </br>
+                <!-- Adicione um botão para calcular o total e realizar a venda -->
+                <button type="button" onclick="calcularTotal()">Calcular Total</button>
+                <button type="button" onclick="realizarVenda()">Vender</button>
+            </form>
+        </div>  
         
-        </div>
-        </br>
-        <button >Adicionar</button>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                preencherOpcoesProdutos();
+            });
+
+            async function preencherOpcoesProdutos() {
+                fetch("/api/produtos") // Substitua pela rota correta
+                    .then(response => response.json())
+                    .then(produtos => {
+                        const produtoSelect = document.getElementById("produtoSelect");
+
+                        produtos.forEach(produto => {
+                            const option = document.createElement("option");
+                            option.value = produto.id;
+                            option.text = produto.nome;
+                            produtoSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Erro ao obter produtos:", error));
+            }
+
+            async function obterPrecoProduto(produtoId) {
+                try {
+                    const response = await fetch(`/preco/${produtoId}`);
+                    const data = await response.json();
+                    return data.preco;
+                } catch (error) {
+                    console.error('Erro ao obter preço do produto:', error);
+                     return null;
+                 }
+            }
+
+            async function calcularTotal() {
+                 const produtoSelect = document.getElementById('produtoSelect');
+                 const quantidadeInput = document.getElementById('quantidade');
+                 const totalInput = document.getElementById('total');
+
+                 const produtoId = produtoSelect.value;
+                 const preco = await obterPrecoProduto(produtoId);
+
+                 // Calcula o total
+                 const quantidade = parseFloat(quantidadeInput.value);
+                 const total = preco * quantidade;
+
+                 // Atualiza o campo de total
+                 totalInput.value = total.toFixed(2);  // Formatando para duas casas decimais
+            }
+
+            async function realizarVenda() {
+                const produtoSelect = document.getElementById('produtoSelect');
+                const quantidadeInput = document.getElementById('quantidade');
+
+                const produtoId = produtoSelect.value;
+                const quantidade = parseFloat(quantidadeInput.value);
+
+                try {
+                    const response = await fetch('/realizar-venda', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ produtoId, quantidade }),
+                    });
+
+                    const data = await response.json();
+                    alert(data.message);  // Exibe uma mensagem de sucesso
+                } catch (error) {
+                    console.error('Erro ao realizar venda:', error);
+                    // Lógica de tratamento de erro
+                }
+            }
             
-    </div>  
+        </script>
+    </div>
 </body>
 </html>

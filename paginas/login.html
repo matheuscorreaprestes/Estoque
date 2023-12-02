@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoirt" content="width=device, initial-scale=.0">
-    <link rel="stylesheet" href="/estilos/login.css">
+    <link rel="stylesheet" href="/paginas/css/login.css">
     <link rel="shortcut icon" href="/1234.ico" type="image/x-icon">
     <title>Login</title>
 </head>
 <body>
     <div id="all">
+    <form method="POST" class="formLogin">
         <div id="login-box">
           <div id="login-header">
             Faça login no sistema
           </div>
           <div id="login-inputs">
-            <input class="campos" type="text"  placeholder="Nome de usuario" name="nome">
+            <input class="campos" type="email"  placeholder="E-mail" name="email">
             <br />
             <input class="campos" type="password" placeholder="Senha" name="senha">
           </div>
           <div id="enviar">
-            <input type="button" onclick="Login()" class="botao" value="Login">
+            <input type="submit" onclick="Login()" class="botao" value="acessar">
           </div>
-          <a href="/pages/admin.html">Entrar como admin</a>
         </div>
       </div>
     </form>
 
-    <script src="/scripts/login.js"></script>
+    <script src="./js/login.js"></script>
     
 </body>
 </html>
